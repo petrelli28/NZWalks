@@ -95,7 +95,16 @@ namespace NZWalks.API.Controllers
                 return NotFound();
             }
 
-            return Ok(walk);
+            // Convert Domain back to DTO
+            var walkDTO = new Models.DTO.Walk()
+            {
+                Name = walk.Name,
+                Length = walk.Length,
+                RegionId = walk.RegionId,
+                WalkDifficultyId = walk.WalkDifficultyId
+            };
+
+            return Ok(walkDTO);
         }
 
         [HttpDelete]
